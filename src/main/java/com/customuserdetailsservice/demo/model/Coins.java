@@ -10,13 +10,13 @@ public class Coins {
     private long id;
 
     @Column
-    private long userid;
+    private long userId;
 
     @Column
     private int amount;
 
     @Column
-    private String coinKey;
+    private String coinsKey;
 
     //@ManyToOne
     //@Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -32,11 +32,11 @@ public class Coins {
     }
 
     public long getUserid() {
-        return userid;
+        return userId;
     }
 
     public void setUserid(long userid) {
-        this.userid = userid;
+        this.userId = userId;
     }
 
     public int getAmount() {
@@ -47,12 +47,12 @@ public class Coins {
         this.amount = amount;
     }
 
-    public String getCoinKey() {
-        return coinKey;
+    public String getCoinsKey() {
+        return coinsKey;
     }
 
     public void setCoinKey(String coinKey) {
-        this.coinKey = coinKey;
+        this.coinsKey = coinsKey;
     }
 
 }

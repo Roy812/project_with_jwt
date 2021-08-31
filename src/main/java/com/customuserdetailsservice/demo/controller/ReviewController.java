@@ -4,12 +4,10 @@ import com.customuserdetailsservice.demo.model.Review;
 import com.customuserdetailsservice.demo.service.ReviewServiceForUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("review")
 public class ReviewController {
 
@@ -21,8 +19,8 @@ public class ReviewController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity<Object> addReview(@RequestBody Review review) {
-        reviewServiceForUser.addUserReview(review);
+    public ResponseEntity<Object> addReview(@RequestBody Review review, long userId) {
+        reviewServiceForUser.addUserReview(review, userId);
         return ResponseEntity.ok("Review added");
     }
 

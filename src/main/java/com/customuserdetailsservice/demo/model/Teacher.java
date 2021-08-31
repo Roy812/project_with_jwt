@@ -1,9 +1,7 @@
 package com.customuserdetailsservice.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Teacher {
@@ -18,11 +16,13 @@ public class Teacher {
     @Column
     private String password;
 
-    //Entity Relations
-    //@OneToMany (mappedBy = "teacher")
-    //private List<Lesson> lesson;
 
-    //Getters and Setters
+    //RELATIONSHIP ANNOTATIONS
+    @OneToMany (mappedBy = "teacher")
+    private List<Lesson> lesson;
+
+
+    //GETTERS & SETTERS
     public long getId() {
         return Id;
     }
@@ -47,13 +47,12 @@ public class Teacher {
         this.password = password;
     }
 
-    //public List<Lesson> getLesson() {
-      //  return lesson;
-    //}
+    public List<Lesson> getLesson() {
+        return lesson;
+    }
 
-    //public void setLesson(List<Lesson> lesson) {
-      //  this.lesson = lesson;
-    //}
-
+    public void setLesson(List<Lesson> lesson) {
+        this.lesson = lesson;
+    }
 
 }

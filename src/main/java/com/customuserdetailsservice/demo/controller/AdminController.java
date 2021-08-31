@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -36,7 +37,7 @@ public class AdminController {
         return ResponseEntity.ok(user);
     }
 
-    //Postman: DELETE-->body-->raw-->JSON(java script object notation).
+
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Object> deleteUser(@PathVariable("id") long id) {
         adminService.removeUser(id);

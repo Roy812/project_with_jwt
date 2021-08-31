@@ -2,6 +2,7 @@ package com.customuserdetailsservice.demo.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,8 +11,9 @@ public class User {
 
     @Id
     @GeneratedValue//(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long userId;
 
+//    @Id
     @Column
     private String username;
 
@@ -21,17 +23,19 @@ public class User {
     @Column
     private int coinBalance;
 
-    //Profile Picture??
+    @Column
+    private boolean subscribeToNewsletter;
 
-    //Entity Relationships
-    //@OneToOne (mappedBy = "user")
-    //private Agenda agenda;
+    @Lob
+    private byte[] profilePicture;
 
-    //@OneToMany (mappedBy = "user")
-    //private List<Coins> coins;
 
-    //@OneToMany (mappedBy = "user")
-    //private List<Review> review;
+    //RELATIONSHIP ANNOTATIONS
+    @OneToMany (mappedBy = "user")
+    private List<Agenda> agenda;
+
+    @OneToMany (mappedBy = "user")
+    private List<Review> reviews;
 
     @OneToMany(
             targetEntity = Authority.class,
@@ -40,15 +44,16 @@ public class User {
             orphanRemoval = true,
             fetch = FetchType.EAGER)
 
+
+    //GETTERS & SETTERS
     private Set<Authority> authorities = new HashSet<>();
 
-    //Getters and Setters
     public long getUserId() {
-        return Id;
+        return userId;
     }
 
     public void setUserId(long userId) {
-        this.Id = userId;
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -75,12 +80,44 @@ public class User {
         this.coinBalance = coinBalance;
     }
 
+    public boolean isSubscribeToNewsletter() {
+        return subscribeToNewsletter;
+    }
+
+    public void setSubscribeToNewsletter(boolean subscribeToNewsletter) {
+        this.subscribeToNewsletter = subscribeToNewsletter;
+    }
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
     public Set<Authority> getAuthorities() { return authorities; }
     public void addAuthority(Authority authority) {
         this.authorities.add(authority);
     }
     public void removeAuthority(Authority authority) {
         this.authorities.remove(authority);
+    }
+
+    public List<Agenda> getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(List<Agenda> agenda) {
+        this.agenda = agenda;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
 }

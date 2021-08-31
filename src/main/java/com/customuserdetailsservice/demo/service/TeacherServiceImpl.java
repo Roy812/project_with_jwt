@@ -3,6 +3,7 @@ package com.customuserdetailsservice.demo.service;
 import com.customuserdetailsservice.demo.Exception.BadRequestException;
 import com.customuserdetailsservice.demo.Exception.RecordNotFoundException;
 import com.customuserdetailsservice.demo.model.Teacher;
+import com.customuserdetailsservice.demo.model.User;
 import com.customuserdetailsservice.demo.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,19 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void changePassword(String newPassword, long id) {
+//        Optional<Teacher> teacher = teacherRepository.findById(id);
+//        try {
+//            teacher.get().setPassword(newPassword);
+//            teacherRepository.save(teacher.get());
+//        } catch (Exception e) {
+//            throw new RecordNotFoundException();
+//        }
         Optional<Teacher> teacher = teacherRepository.findById(id);
-        try {
+        if (teacher.get().getPassword().equals(newPassword)) {
+            throw new BadRequestException();
+        } else {
             teacher.get().setPassword(newPassword);
             teacherRepository.save(teacher.get());
-        } catch (Exception e) {
-            throw new RecordNotFoundException();
         }
     }
 
