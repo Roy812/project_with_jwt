@@ -12,8 +12,8 @@ public class Admin {
     @GeneratedValue
     private long id;
 
-    @Column
-    private String mailaddress;
+//    @Column
+//    private String mailaddress;
 
     @Column
     private String username;
@@ -30,13 +30,13 @@ public class Admin {
         this.id = id;
     }
 
-    public String getMailaddress() {
-        return mailaddress;
-    }
-
-    public void setMailaddress(String mailaddress) {
-        this.mailaddress = mailaddress;
-    }
+//    public String getMailaddress() {
+//        return mailaddress;
+//    }
+//
+//    public void setMailaddress(String mailaddress) {
+//        this.mailaddress = mailaddress;
+//    }
 
     public String getUsername() {
         return username;

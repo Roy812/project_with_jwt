@@ -13,17 +13,19 @@ public class Review {
     private String review;
 
     @Column
-    private long userid;
-
-    @Column
     private String teacherReply;
 
-    //Relations
+
+    //RELATIONSHIP ANNOTATIONS
+    @ManyToOne
+    private User user;
+
+
     //@ManyToOne
     //@Cascade(org.hibernate.annotations.CascadeType.ALL)
     //private User user;
 
-    //Getters and Setters
+    //GETTERS & SETTERS
     public long getId() {
         return id;
     }
@@ -48,21 +50,12 @@ public class Review {
         this.teacherReply = teacherReply;
     }
 
-    public long getUserid() {
-        return userid;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(long userid) {
-        this.userid = userid;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    //public User getUser() {
-      //  return user;
-    //}
-
-    //public void setUser(User user) {
-      //  this.user = user;
-    //}
-
 
 }

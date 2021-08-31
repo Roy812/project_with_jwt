@@ -1,6 +1,7 @@
 package com.customuserdetailsservice.demo.service;
 
 import com.customuserdetailsservice.demo.Exception.BadRequestException;
+import com.customuserdetailsservice.demo.Exception.RecordNotFoundException;
 import com.customuserdetailsservice.demo.model.Coins;
 import com.customuserdetailsservice.demo.model.User;
 import com.customuserdetailsservice.demo.repository.CoinRepository;
@@ -24,32 +25,39 @@ public class CoinsServiceImpl implements CoinService{
     }
 
     @Override
-    public void buyCoins(Coins coins) {
-        List<Coins> list = coinRepository.findAll();
-        boolean badRequest = false;
-        for (int i = 0; i < list.size(); i++) {
-            if (coins.getCoinKey().equals(list.get(i).getCoinKey())) {
-                badRequest = true;
-            }
-        }
-        if (badRequest) {
-            throw new BadRequestException();
-        } else {
-            coinRepository.save(coins);
-        }
-    }
-
-    @Override
-    public void updateCoinBalance(Coins coins, long userId) {
+    public void updateCoinBalance(long userId, int amount) {
         Optional<User> user = userRepository.findById(userId);
         int coinBalance = user.get().getCoinBalance();
         try {
-            user.get().setCoinBalance(coinBalance + coins.getAmount());
-            userRepository.save(user.get());
+            user.get().setCoinBalance(coinBalance + amount);
         } catch (Exception e) {
-            throw new BadRequestException();
+            throw new RecordNotFoundException();
         }
     }
 
+    //    @Override
+//    public void buyCoins(Coins coins) {
+//        List<Coins> list = coinRepository.findAll();
+//        boolean badRequest = false;
+//        for (int i = 0; i < list.size(); i++) {
+//            if (coins.getCoinsKey().equals(list.get(i).getCoinsKey())) {
+//                badRequest = true;
+//            }
+//        }
+//        if (badRequest) {
+//            throw new BadRequestException();
+//        } else {
+//            coinRepository.save(coins);
+//        }
+//    }
+
+//    @Override
+//    public void getByCoinsKey(String coinsKey) {
+//        try {
+//            coinRepository.findCoinsByCoinsKey(coinsKey);
+//        } catch (Exception e) {
+//            throw new BadRequestException();
+//        }
+//    }
 
 }

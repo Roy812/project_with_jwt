@@ -71,5 +71,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
-    //Log In: USER - codeforuser || ADMIN - smartcode || TEACHER - codetoteach
+ //AANPASSING VOOR GITHUB
 }

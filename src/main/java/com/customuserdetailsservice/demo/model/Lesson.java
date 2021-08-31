@@ -1,6 +1,7 @@
 package com.customuserdetailsservice.demo.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Lesson {
@@ -12,17 +13,17 @@ public class Lesson {
     @Column
     private String lessonDescription;
 
-    //Video???
+    @Lob
+    private byte[] classVideo;
 
-    //@ManyToMany
-    //@Cascade(org.hibernate.annotations.CascadeType.ALL)
-    //private List<Agenda> agenda;
+    //RELATIONSHIP ANNOTATIONS
+    @OneToMany (mappedBy = "lesson")
+    private List<Agenda> agenda;
 
-    //@ManyToOne
-    //@Cascade(org.hibernate.annotations.CascadeType.ALL)
-    //private Teacher teacher;
+    @ManyToOne
+    private Teacher teacher;
 
-    //Getters and Setters
+    //GETTERS & SETTERS
     public long getId() {
         return id;
     }
@@ -39,5 +40,12 @@ public class Lesson {
         this.lessonDescription = lessonDescription;
     }
 
+    public byte[] getClassVideo() {
+        return classVideo;
+    }
+
+    public void setClassVideo(byte[] classVideo) {
+        this.classVideo = classVideo;
+    }
 
 }

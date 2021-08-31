@@ -1,6 +1,5 @@
 package com.customuserdetailsservice.demo.service;
 
-
 import com.customuserdetailsservice.demo.Exception.RecordNotFoundException;
 import com.customuserdetailsservice.demo.Exception.UserNotFoundException;
 import com.customuserdetailsservice.demo.model.User;

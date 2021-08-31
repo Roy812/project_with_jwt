@@ -1,9 +1,6 @@
 package com.customuserdetailsservice.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Agenda {
@@ -12,21 +9,18 @@ public class Agenda {
     @GeneratedValue
     private long id;
 
-    @Column
-    private String coinKey;
+    //RELATIONSHIP ANNOTATIONS
+    @ManyToOne
+    private User user;
 
-    @Column
-    private long lessonId;
+    @ManyToOne
+    private Lesson lesson;
 
-    //Relationship Annotation
     //@OneToOne
     //@Cascade(org.hibernate.annotations.CascadeType.ALL)
     //private User user;
 
-    //@ManyToMany (mappedBy = "agenda")
-    //private List<Lesson> lesson;
-
-    //Getters and Setters
+    //GETTERS & SETTERS
     public long getId() {
         return id;
     }
@@ -35,20 +29,19 @@ public class Agenda {
         this.id = id;
     }
 
-    public String getCoinKey() {
-        return coinKey;
+    public User getUser() {
+        return user;
     }
 
-    public void setCoinKey(String coinKey) {
-        this.coinKey = coinKey;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getLessonId() {
-        return lessonId;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonId(long lessonId) {
-        this.lessonId = lessonId;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
-
 }
